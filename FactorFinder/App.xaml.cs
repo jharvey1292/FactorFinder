@@ -22,7 +22,7 @@ namespace FactorFinder
             container.RegisterType<IDerivePrimes, DirectSearch>();
             container.RegisterType<IPrimeModel, PrimeFactorsModel>();
             PrimeFactorsViewModel viewModel = container.Resolve<PrimeFactorsViewModel>();
-            FactorFinder.MainWindow view = new FactorFinder.MainWindow();
+            MainWindow view = new MainWindow();
             view.DataContext = viewModel;
             view.Show();
         }

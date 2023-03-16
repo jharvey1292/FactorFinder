@@ -13,7 +13,7 @@ namespace FactorFinder.ViewModel
     {
         #region Private Fields
         private string _result;
-        private IPrimeModel _primeModel;
+        private readonly IPrimeModel _primeModel;
         private ICommand _calculatePrimesCommand;
         #endregion
 
@@ -74,12 +74,7 @@ namespace FactorFinder.ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }
@@ -87,8 +82,8 @@ namespace FactorFinder.ViewModel
     #region CommandHandler
     public class CommandHandler : ICommand
     {
-        private Action _action;
-        private Func<bool> _canExecute;
+        private readonly Action _action;
+        private readonly Func<bool> _canExecute;
 
         public CommandHandler(Action action, Func<bool> canExecute)
         {
